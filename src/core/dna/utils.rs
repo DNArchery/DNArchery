@@ -256,7 +256,6 @@ pub fn compute_dna_levenshtein_distance(dna_a: String, dna_b: String) -> u32 {
     )
 }
 
-
 /// Calculate sparse alignments of two DNA sequences
 pub fn calculate_sparse_alignments(dna_a: String, dna_b: String) -> (u32, Vec<(u32, u32)>) {
     let k = 8; // k separation

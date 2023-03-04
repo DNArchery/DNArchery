@@ -1,3 +1,4 @@
+#![allow(warnings)]
 use rand::Rng;use std::io::{Error, ErrorKind};
 
 // Reading fasta/gff3 files

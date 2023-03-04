@@ -1,11 +1,23 @@
 use serde::{Serialize, Deserialize};
-use actix_web::{post, web::Json};
+use actix_web::{post, web::Json, Either, HttpResponse};
 
 use crate::core::dna;
+use crate::core::schema::*;
 
-#[derive(Deserialize)]
+#[derive(Serialize, Deserialize)]
 struct DnaString {
     dna: String,
+}
+
+#[derive(Deserialize)]
+struct DnaAlign {
+    dna_a: String,
+    dna_b: String,
+}
+
+#[derive(Serialize)]
+struct DnaNdiffs {
+    ndiff: usize,
 }
 
 #[derive(Serialize)]
@@ -24,3 +36,67 @@ async fn dna_to_protein(form: Json<DnaString>) -> Json<ProteinString> {
         protein: dna::utils::dna_to_protein(form.dna.to_owned()),
     })
 }
+
+#[post("/dna/circular_svg")]
+async fn dna_to_circular_svg(form: Json<DnaString>) -> HttpResponse {
+    HttpResponse::Ok()
+        .content_type("image/svg+xml")
+        .body(dna::utils::gen_dna_circular_svg(form.dna.to_owned()))
+}
+
+#[post("/dna/circular_png")]
+async fn dna_to_circular_png(form: Json<DnaString>) -> HttpResponse {
+    HttpResponse::Ok()
+        .content_type("image/png")
+        .body(dna::utils::gen_dna_circular_png(form.dna.to_owned()))
+}
+
+#[post("/dna/circular_png_bw")]
+async fn dna_to_circular_png_bw(form: Json<DnaString>) -> HttpResponse {
+    HttpResponse::Ok()
+        .content_type("image/png")
+        .body(dna::utils::gen_dna_circular_png_bw(form.dna.to_owned()))
+}
+
+#[post("/dna/to_amino_acids")]
+async fn dna_to_amino_acids(form: Json<DnaString>) -> Json<AminoAcids> {
+    Json(
+        AminoAcids {
+            amino_acids: dna::utils::amino_acids_from_dna(form.dna.to_owned())
+        }
+    )
+}
+
+#[post("/dna/kmer_substring")]
+async fn kmer_substring_from(form: Json<DnaString>) -> Json<DnaString> {
+    Json(
+        DnaString {
+            dna: dna::utils::derive_kmer_substring_from_dna(form.dna.to_owned())
+        }
+    )
+}
+
+#[post("/dna/ndiffs")]
+async fn compute_dna_ndiffs(form: Json<DnaAlign>) -> Either<Json<DnaNdiffs>, Json<Error>> {
+    let ndiff_compute = dna::utils::compute_dna_ndiffs(
+        form.dna_a.to_owned(),
+        form.dna_b.to_owned()
+    );
+
+    let response = match ndiff_compute {
+        Some(ndiff) => Either::Left(Json(DnaNdiffs { ndiff })),
+        None => Either::Right(Json(Error { error: "DNA strings are not of equal length".into() }))
+    };
+
+    response
+}
+
+// #[post("/dna/needleman-wunsch")]
+// async fn align_needleman_wunsch(form: Json<DnaAlign>) -> Json<NeedlemanWunschAlignment> {
+//     Json(
+//         dna::algos::align_needleman_wunsch(
+//             form.dna_a.to_owned(),
+//             form.dna_b.to_owned()
+//         )
+//     )
+// }

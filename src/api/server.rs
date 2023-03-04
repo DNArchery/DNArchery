@@ -13,7 +13,13 @@ use super::endpoints::{
         seq_random
     },
     dna::{
-        dna_to_protein
+        dna_to_protein,
+        dna_to_circular_svg,
+        dna_to_circular_png,
+        dna_to_circular_png_bw,
+        dna_to_amino_acids,
+        kmer_substring_from,
+        compute_dna_ndiffs
     }
 };
 
@@ -36,7 +42,13 @@ pub async fn spin() -> std::io::Result<()> {
             .service(codon_frames)
             .service(seq_lorf)
             .service(seq_random)
+            .service(dna_to_circular_svg)
+            .service(dna_to_circular_png)
+            .service(dna_to_circular_png_bw)
+            .service(dna_to_amino_acids)
             .service(dna_to_protein)
+            .service(kmer_substring_from)
+            .service(compute_dna_ndiffs)
         )
         .bind(("127.0.0.1", 1337))?
         .run()

@@ -1,0 +1,21 @@
+[package]
+name = "dnarchery-code"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+actix-web = "4.3.1"
+bio = "1.1.0"
+log = "0.4.17"
+portpicker = "0.1.1"
+pretty_env_logger = "0.4.0"
+serde = { version = "1.0.152", features = ["derive"] }
+nsvg = "0.5.1"
+image = "0.24.5"
+resvg = "0.29.0"
+tiny-skia = "0.8.3"
+usvg = "0.29.0"
+
+rust-genomics = { path = "lib/rust-genomics" }
+plasmid = { path = "lib/libplasmid" }
+

@@ -21,8 +21,13 @@ struct DnaNdiffs {
 }
 
 #[derive(Serialize)]
-struct Distance {
+struct HammingDistance {
     distance: u64,
+}
+
+#[derive(Serialize)]
+struct LevenshteinDistance {
+    distance: u32,
 }
 
 #[derive(Serialize)]
@@ -97,9 +102,9 @@ async fn compute_dna_ndiffs(form: Json<DnaAlign>) -> Either<Json<DnaNdiffs>, Jso
 }
 
 #[post("/dna/hamming_distance")]
-async fn compute_dna_hamming_distance(form: Json<DnaAlign>) -> Json<Distance> {
+async fn compute_dna_hamming_distance(form: Json<DnaAlign>) -> Json<HammingDistance> {
     Json(
-        Distance {
+        HammingDistance {
             distance: dna::utils::compute_dna_hamming_distance(
                 form.dna_a.to_owned(),
                 form.dna_b.to_owned()
@@ -107,6 +112,19 @@ async fn compute_dna_hamming_distance(form: Json<DnaAlign>) -> Json<Distance> {
         }
     )
 }
+
+#[post("/dna/levenshtein_distance")]
+async fn compute_dna_levenshtein_distance(form: Json<DnaAlign>) -> Json<LevenshteinDistance> {
+    Json(
+        LevenshteinDistance {
+            distance: dna::utils::compute_dna_levenshtein_distance(
+                form.dna_a.to_owned(),
+                form.dna_b.to_owned()
+            )
+        }
+    )
+}
+
 
 // #[post("/dna/needleman-wunsch")]
 // async fn align_needleman_wunsch(form: Json<DnaAlign>) -> Json<NeedlemanWunschAlignment> {

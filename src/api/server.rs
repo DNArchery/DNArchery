@@ -22,7 +22,8 @@ use super::endpoints::{
         compute_dna_ndiffs,
         compute_dna_hamming_distance,
         compute_dna_levenshtein_distance,
-        calculate_sparse_alignments
+        calculate_sparse_alignments,
+        align_needleman_wunsch,
     }
 };
 
@@ -55,6 +56,7 @@ pub async fn spin() -> std::io::Result<()> {
             .service(compute_dna_hamming_distance)
             .service(compute_dna_levenshtein_distance)
             .service(calculate_sparse_alignments)
+            .service(align_needleman_wunsch)
         )
         .bind(("127.0.0.1", 1337))?
         .run()

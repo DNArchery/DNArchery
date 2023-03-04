@@ -19,4 +19,4 @@ usvg = "0.29.0"
 rust-genomics = { path = "lib/rust-genomics" }
 plasmid = { path = "lib/libplasmid" }
 debruijn = "0.3.4"
-
+seal = "0.1.5"

@@ -11,6 +11,8 @@ use debruijn::dna_string::*;
 use debruijn::kmer::Kmer16;
 use debruijn::Vmer;
 
+use bio::alignment::distance::*;
+
 use nsvg;
 use resvg::usvg_text_layout::{fontdb, TreeTextToPath};
 
@@ -233,6 +235,14 @@ pub fn compute_dna_ndiffs(dna_a: String, dna_b: String) -> Option<usize> {
     let dna_b = DnaString::from_dna_string(&dna_b);
 
     Some(ndiffs(&dna_a, &dna_b))
+}
+
+/// Compute hamming distance of two DNA Sequences
+pub fn compute_dna_hamming_distance(dna_a: String, dna_b: String) -> u64 {
+    hamming(
+        dna_a.as_bytes(),
+        dna_b.as_bytes()
+    )
 }
 
 /*

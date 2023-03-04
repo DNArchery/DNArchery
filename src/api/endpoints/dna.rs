@@ -21,6 +21,11 @@ struct DnaNdiffs {
 }
 
 #[derive(Serialize)]
+struct Distance {
+    distance: u64,
+}
+
+#[derive(Serialize)]
 struct ProteinString {
     protein: String,
 }
@@ -89,6 +94,18 @@ async fn compute_dna_ndiffs(form: Json<DnaAlign>) -> Either<Json<DnaNdiffs>, Jso
     };
 
     response
+}
+
+#[post("/dna/hamming_distance")]
+async fn compute_dna_hamming_distance(form: Json<DnaAlign>) -> Json<Distance> {
+    Json(
+        Distance {
+            distance: dna::utils::compute_dna_hamming_distance(
+                form.dna_a.to_owned(),
+                form.dna_b.to_owned()
+            )
+        }
+    )
 }
 
 // #[post("/dna/needleman-wunsch")]

@@ -19,7 +19,8 @@ use super::endpoints::{
         dna_to_circular_png_bw,
         dna_to_amino_acids,
         kmer_substring_from,
-        compute_dna_ndiffs
+        compute_dna_ndiffs,
+        compute_dna_hamming_distance
     }
 };
 
@@ -49,6 +50,7 @@ pub async fn spin() -> std::io::Result<()> {
             .service(dna_to_protein)
             .service(kmer_substring_from)
             .service(compute_dna_ndiffs)
+            .service(compute_dna_hamming_distance)
         )
         .bind(("127.0.0.1", 1337))?
         .run()

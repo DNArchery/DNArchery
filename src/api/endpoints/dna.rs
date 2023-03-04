@@ -1,7 +1,7 @@
 use serde::{Serialize, Deserialize};
 use actix_web::{post, web::Json, Either, HttpResponse};
 
-use crate::core::dna::algos::NeedlemanWunschAlignment;
+use crate::core::dna::algos::DNAAlignment;
 
 use crate::core::dna;
 use crate::core::schema::*;
@@ -149,11 +149,11 @@ async fn calculate_sparse_alignments(form: Json<DnaAlign>) -> Json<SparseAlignme
 }
 
 #[post("/dna/needleman_wunsch")]
-async fn align_needleman_wunsch(form: Json<DnaAlign>) -> Json<NeedlemanWunschAlignment> {
-    Json(
-        dna::algos::align_needleman_wunsch(
-            form.dna_a.to_owned(),
-            form.dna_b.to_owned()
-        )
-    )
+async fn align_needleman_wunsch(form: Json<DnaAlign>) -> Json<DNAAlignment> {
+   Json(dna::algos::align_needleman_wunsch(form.dna_a.to_owned(), form.dna_b.to_owned()))
+}
+
+#[post("/dna/smith_waterman")]
+async fn align_smith_waterman(form: Json<DnaAlign>) -> Json<DNAAlignment> {
+    Json(dna::algos::align_smith_waterman(form.dna_a.to_owned(), form.dna_b.to_owned()))
 }

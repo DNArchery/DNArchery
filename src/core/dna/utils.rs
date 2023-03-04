@@ -276,10 +276,10 @@ pub fn calculate_sparse_alignments(dna_a: String, dna_b: String) -> (u32, Vec<(u
 }
 
 /*
-TODO: Implement this
+    NOTE: This could be implemented here!
 
-// Check if NdeI cut site exists
-if let Some(ann) = seq.annotation_iter().find(|ann| ann.text == "NdeI") {
-    println!("Found NdeI cut site (start: {}; end: {})", ann.start, ann.end);
-}
+    // Check if NdeI cut site exists
+    if let Some(ann) = seq.annotation_iter().find(|ann| ann.text == "NdeI") {
+        println!("Found NdeI cut site (start: {}; end: {})", ann.start, ann.end);
+    }
  */

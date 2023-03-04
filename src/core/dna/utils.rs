@@ -267,7 +267,10 @@ pub fn calculate_sparse_alignments(dna_a: String, dna_b: String) -> (u32, Vec<(u
         k
     );
 
+    // LCSk++: Practical similarity metric for long strings
+    // Paper: https://arxiv.org/abs/1407.2407
     let sparse_al = sparse::lcskpp(&matches, k);
+
     let match_path: Vec<(u32,u32)> = sparse_al.path.iter().map(|i| matches[*i]).collect();
     
     (sparse_al.score, match_path)

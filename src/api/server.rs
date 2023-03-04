@@ -12,8 +12,9 @@ use super::endpoints::{
         seq_lorf,
         seq_random
     },
-    // dna::{
-    // }
+    dna::{
+        dna_to_protein
+    }
 };
 
 #[get("/")]
@@ -35,7 +36,7 @@ pub async fn spin() -> std::io::Result<()> {
             .service(codon_frames)
             .service(seq_lorf)
             .service(seq_random)
-            // .service(align_needleman_wunsch)
+            .service(dna_to_protein)
         )
         .bind(("127.0.0.1", 1337))?
         .run()

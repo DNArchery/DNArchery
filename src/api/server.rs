@@ -21,7 +21,8 @@ use super::endpoints::{
         kmer_substring_from,
         compute_dna_ndiffs,
         compute_dna_hamming_distance,
-        compute_dna_levenshtein_distance
+        compute_dna_levenshtein_distance,
+        calculate_sparse_alignments
     }
 };
 
@@ -53,6 +54,7 @@ pub async fn spin() -> std::io::Result<()> {
             .service(compute_dna_ndiffs)
             .service(compute_dna_hamming_distance)
             .service(compute_dna_levenshtein_distance)
+            .service(calculate_sparse_alignments)
         )
         .bind(("127.0.0.1", 1337))?
         .run()

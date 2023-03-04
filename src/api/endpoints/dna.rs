@@ -31,6 +31,12 @@ struct LevenshteinDistance {
 }
 
 #[derive(Serialize)]
+struct SparseAlignment {
+    score: u32,
+    match_path: Vec<(u32, u32)>
+}
+
+#[derive(Serialize)]
 struct ProteinString {
     protein: String,
 }
@@ -125,6 +131,20 @@ async fn compute_dna_levenshtein_distance(form: Json<DnaAlign>) -> Json<Levensht
     )
 }
 
+#[post("/dna/sparse_alignment")]
+async fn calculate_sparse_alignments(form: Json<DnaAlign>) -> Json<SparseAlignment> {
+    let (score, match_path) = dna::utils::calculate_sparse_alignments(
+        form.dna_a.to_owned(),
+        form.dna_b.to_owned()
+    );
+
+    Json(
+        SparseAlignment {
+            score,
+            match_path
+        }
+    )
+}
 
 // #[post("/dna/needleman-wunsch")]
 // async fn align_needleman_wunsch(form: Json<DnaAlign>) -> Json<NeedlemanWunschAlignment> {

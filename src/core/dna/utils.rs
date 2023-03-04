@@ -12,6 +12,7 @@ use debruijn::kmer::Kmer16;
 use debruijn::Vmer;
 
 use bio::alignment::distance;
+use bio::alignment::sparse;
 
 use nsvg;
 use resvg::usvg_text_layout::{fontdb, TreeTextToPath};
@@ -238,6 +239,7 @@ pub fn compute_dna_ndiffs(dna_a: String, dna_b: String) -> Option<usize> {
 }
 
 /// Compute hamming distance of two DNA Sequences
+/// https://en.wikipedia.org/wiki/Hamming_distance
 pub fn compute_dna_hamming_distance(dna_a: String, dna_b: String) -> u64 {
     distance::hamming(
         dna_a.as_bytes(),
@@ -246,11 +248,29 @@ pub fn compute_dna_hamming_distance(dna_a: String, dna_b: String) -> u64 {
 }
 
 /// Compute levenshtein distance of two DNA Sequences
+/// https://en.wikipedia.org/wiki/Levenshtein_distance
 pub fn compute_dna_levenshtein_distance(dna_a: String, dna_b: String) -> u32 {
     distance::levenshtein(
         dna_a.as_bytes(),
         dna_b.as_bytes()
     )
+}
+
+
+/// Calculate sparse alignments of two DNA sequences
+pub fn calculate_sparse_alignments(dna_a: String, dna_b: String) -> (u32, Vec<(u32, u32)>) {
+    let k = 8; // k separation
+    
+    let matches = sparse::find_kmer_matches(
+        dna_a.as_bytes(),
+        dna_b.as_bytes(),
+        k
+    );
+
+    let sparse_al = sparse::lcskpp(&matches, k);
+    let match_path: Vec<(u32,u32)> = sparse_al.path.iter().map(|i| matches[*i]).collect();
+    
+    (sparse_al.score, match_path)
 }
 
 /*

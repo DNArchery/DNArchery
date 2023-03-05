@@ -35,3 +35,14 @@
 .output .card p {
     font-size: 13px;
 }
+
+.codon-cell {
+    background-color: #cccccc;
+    height: 40px;
+    width: 130px;
+    display: flex;
+    border-radius: 20px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    font-size: 13px;
+}

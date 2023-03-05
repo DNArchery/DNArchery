@@ -1,14 +1,13 @@
 /// Credits:
-/// 
+///
 /// Index Tables and conversions (protein) from: https://github.com/dweb0/protein-translate/blob/master/src/lib.rs
-/// 
-
+///
 use plasmid::prelude::*;
 use plasmid::seq::DnaSequence;
 
-use debruijn::Kmer;
 use debruijn::dna_string::*;
 use debruijn::kmer::Kmer16;
+use debruijn::Kmer;
 use debruijn::Vmer;
 
 use bio::alignment::distance;
@@ -94,7 +93,8 @@ pub fn dna_to_protein(seq: String) -> String {
 pub fn codon_chunks_from_dna(seq: String) -> Vec<String> {
     let cod_len = 3;
 
-    let divide = seq.as_bytes()
+    let divide = seq
+        .as_bytes()
         .chunks(cod_len)
         .map(std::str::from_utf8)
         .collect::<Result<Vec<&str>, _>>()
@@ -106,7 +106,7 @@ pub fn codon_chunks_from_dna(seq: String) -> Vec<String> {
         codon_chunks.push(i.to_string());
     }
 
-    return codon_chunks;    
+    return codon_chunks;
 }
 
 /// Derive amino acid sets from DNA sequence.
@@ -120,29 +120,29 @@ pub fn amino_acids_from_dna(seq: String) -> Vec<String> {
     for codon in codons {
         // codon to amino acid jump table
         match codon.as_str() {
-            "GUU" | "GUC" | "GUA" | "GUG" =>                 amino_acids.push("Valine".into()),
-            "GCU" | "GCC" | "GCA" | "GCG" =>                 amino_acids.push("Alanine".into()),
-            "GAU" | "GAC" =>                                 amino_acids.push("Aspartic Acid".into()),
-            "GAA" | "GAG" =>                                 amino_acids.push("Glutamic Acid".into()),
-            "GGU" | "GGC" | "GGA" | "GGG" =>                 amino_acids.push("Glycine".into()),
-            "UUU" | "UUC" =>                                 amino_acids.push("Phenylalanine".into()),
+            "GUU" | "GUC" | "GUA" | "GUG" => amino_acids.push("Valine".into()),
+            "GCU" | "GCC" | "GCA" | "GCG" => amino_acids.push("Alanine".into()),
+            "GAU" | "GAC" => amino_acids.push("Aspartic Acid".into()),
+            "GAA" | "GAG" => amino_acids.push("Glutamic Acid".into()),
+            "GGU" | "GGC" | "GGA" | "GGG" => amino_acids.push("Glycine".into()),
+            "UUU" | "UUC" => amino_acids.push("Phenylalanine".into()),
             "UUA" | "UUG" | "CUU" | "CUC" | "CUA" | "CUG" => amino_acids.push("Leucine".into()),
             "UCU" | "UCC" | "UCA" | "UCG" | "AGU" | "AGC" => amino_acids.push("Serine".into()),
-            "UAU" | "UAC" =>                                 amino_acids.push("Tyrosine".into()),
-            "UAA" | "UAG" =>                                 amino_acids.push("STOP".into()),
-            "UGU" | "UGC" =>                                 amino_acids.push("Cysteine".into()),
-            "UGA" =>                                         amino_acids.push("STOP".into()),
-            "UGG" =>                                         amino_acids.push("Tryptophan".into()),
-            "CCU" | "CCC" | "CCA" | "CCG" =>                 amino_acids.push("Proline".into()),
-            "CAU" | "CAC" =>                                 amino_acids.push("Histidine".into()),
-            "CAA" | "CAG" =>                                 amino_acids.push("Glutamine".into()),
+            "UAU" | "UAC" => amino_acids.push("Tyrosine".into()),
+            "UAA" | "UAG" => amino_acids.push("STOP".into()),
+            "UGU" | "UGC" => amino_acids.push("Cysteine".into()),
+            "UGA" => amino_acids.push("STOP".into()),
+            "UGG" => amino_acids.push("Tryptophan".into()),
+            "CCU" | "CCC" | "CCA" | "CCG" => amino_acids.push("Proline".into()),
+            "CAU" | "CAC" => amino_acids.push("Histidine".into()),
+            "CAA" | "CAG" => amino_acids.push("Glutamine".into()),
             "CGU" | "CGC" | "CGA" | "CGG" | "AGA" | "AGG" => amino_acids.push("Arginine".into()),
-            "AUU" | "AUC" | "AUA" =>                         amino_acids.push("Isoleucine".into()),
-            "AUG" =>                                         amino_acids.push("Methionine".into()),
-            "ACU" | "ACC" | "ACA" | "ACG" =>                 amino_acids.push("Threonine".into()),
-            "AAU" | "AAC" =>                                 amino_acids.push("Asparginine".into()),
-            "AAA" | "AAG" =>                                 amino_acids.push("Lysine".into()),
-            _ => ()            
+            "AUU" | "AUC" | "AUA" => amino_acids.push("Isoleucine".into()),
+            "AUG" => amino_acids.push("Methionine".into()),
+            "ACU" | "ACC" | "ACA" | "ACG" => amino_acids.push("Threonine".into()),
+            "AAU" | "AAC" => amino_acids.push("Asparginine".into()),
+            "AAA" | "AAG" => amino_acids.push("Lysine".into()),
+            _ => (),
         }
     }
 
@@ -158,7 +158,7 @@ pub fn gen_dna_circular_svg(seq: String) -> Bytes {
 
     // Generate SVG of circular DNA
     let conf = SvgExportConfig::circular();
-    let svg = SvgExport::new(conf, seq.as_nucleotides());    
+    let svg = SvgExport::new(conf, seq.as_nucleotides());
 
     Bytes::from(svg.export())
 }
@@ -169,7 +169,7 @@ pub fn gen_dna_circular_png_bw(seq: String) -> Bytes {
     let svg = gen_dna_circular_svg(seq);
 
     // parse RAW svg as UTF8 (handle replacement chars if any)
-    let svg =  String::from_utf8_lossy(&svg);
+    let svg = String::from_utf8_lossy(&svg);
 
     let parse_svg = nsvg::parse_str(&svg, nsvg::Units::Pixel, 96.0).unwrap();
 
@@ -186,8 +186,9 @@ pub fn gen_dna_circular_png_bw(seq: String) -> Bytes {
         width,
         height,
         image::ColorType::Rgba8,
-        image::ImageOutputFormat::Png
-    ).expect("Failed to render png.");
+        image::ImageOutputFormat::Png,
+    )
+    .expect("Failed to render png.");
 
     Bytes::from(raw_bytes.into_inner())
 }
@@ -241,45 +242,35 @@ pub fn compute_dna_ndiffs(dna_a: String, dna_b: String) -> Option<usize> {
 /// Compute hamming distance of two DNA Sequences
 /// https://en.wikipedia.org/wiki/Hamming_distance
 pub fn compute_dna_hamming_distance(dna_a: String, dna_b: String) -> u64 {
-    distance::hamming(
-        dna_a.as_bytes(),
-        dna_b.as_bytes()
-    )
+    distance::hamming(dna_a.as_bytes(), dna_b.as_bytes())
 }
 
 /// Compute levenshtein distance of two DNA Sequences
 /// https://en.wikipedia.org/wiki/Levenshtein_distance
 pub fn compute_dna_levenshtein_distance(dna_a: String, dna_b: String) -> u32 {
-    distance::levenshtein(
-        dna_a.as_bytes(),
-        dna_b.as_bytes()
-    )
+    distance::levenshtein(dna_a.as_bytes(), dna_b.as_bytes())
 }
 
 /// Calculate sparse alignments of two DNA sequences
 pub fn calculate_sparse_alignments(dna_a: String, dna_b: String) -> (u32, Vec<(u32, u32)>) {
     let k = 8; // k separation
-    
-    let matches = sparse::find_kmer_matches(
-        dna_a.as_bytes(),
-        dna_b.as_bytes(),
-        k
-    );
+
+    let matches = sparse::find_kmer_matches(dna_a.as_bytes(), dna_b.as_bytes(), k);
 
     // LCSk++: Practical similarity metric for long strings
     // Paper: https://arxiv.org/abs/1407.2407
     let sparse_al = sparse::lcskpp(&matches, k);
 
-    let match_path: Vec<(u32,u32)> = sparse_al.path.iter().map(|i| matches[*i]).collect();
-    
+    let match_path: Vec<(u32, u32)> = sparse_al.path.iter().map(|i| matches[*i]).collect();
+
     (sparse_al.score, match_path)
 }
 
 /*
-    NOTE: This could be implemented here!
+   NOTE: This could be implemented here!
 
-    // Check if NdeI cut site exists
-    if let Some(ann) = seq.annotation_iter().find(|ann| ann.text == "NdeI") {
-        println!("Found NdeI cut site (start: {}; end: {})", ann.start, ann.end);
-    }
- */
+   // Check if NdeI cut site exists
+   if let Some(ann) = seq.annotation_iter().find(|ann| ann.text == "NdeI") {
+       println!("Found NdeI cut site (start: {}; end: {})", ann.start, ann.end);
+   }
+*/

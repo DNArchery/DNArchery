@@ -73,7 +73,7 @@ const DNA = (props) => {
             .then(response => {
                 return response.json()
             })
-            .then(data => setProtein(data))
+            .then(data => setProtein(data.protein))
             .catch(error => console.error(error));
 
         fetch('http://127.0.0.1:1337/dna/circular_svg', {
@@ -98,7 +98,6 @@ const DNA = (props) => {
         <div className='output'>
             <div dangerouslySetInnerHTML={{ __html: svg}} />
             {protein.length > 0 ? <Protein protein={protein} /> : null}
-            {console.log(protein)}
             {lorf.length > 0 ? <Lorf lorf={lorf} /> : null}
             {codon.length > 0 ? <Codon codon={codon} /> : null} <br/>
             {aminoAcid.length > 0 ? <AminoAcid aminoAcid={aminoAcid} /> : null}

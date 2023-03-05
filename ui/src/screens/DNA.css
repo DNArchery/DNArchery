@@ -56,3 +56,14 @@
     overflow: auto;
     max-width: 50vw;
 }
+
+
+.protein {
+    border-radius: 10px;
+    border: 1px solid grey;
+    padding: 10px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    overflow: auto;
+    max-width: 50vw;
+}

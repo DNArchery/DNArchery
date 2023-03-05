@@ -1,0 +1,17 @@
+.output {
+    flex: 5;
+    display: flex;
+}
+
+.output textarea {
+    resize: none;
+    margin-top: 10px;
+    height: 70%;
+    background-color: #e6e6e6;
+    font-family: 'Poppins';
+    color: 'grey';
+    width: 100%;
+    border-radius: 10px;
+    border: solid grey;
+    border-width: 1px;
+}

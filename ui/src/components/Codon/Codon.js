@@ -12,7 +12,6 @@ const Codon = ({ codon }) => {
                 <table>
                     {
                         codon.forEach(group => {
-                            console.log(group);
                             <tr>
                                 {
                                     group.forEach(codon => {

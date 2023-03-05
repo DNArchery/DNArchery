@@ -11,13 +11,13 @@ import './App.css';
 const screens = [
   {
     id: '1',
-    name: 'DNA',
-    component: <DNA />
+    name: 'Algorithms',
+    component: <Algorithms />
   },
   {
     id: '2',
-    name: 'Algorithms',
-    component: <Algorithms />
+    name: 'DNA',
+    component: <DNA />
   },
   {
     id: '3',

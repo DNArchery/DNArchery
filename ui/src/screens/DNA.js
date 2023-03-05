@@ -1,19 +1,22 @@
 import * as React from 'react'
 import Input from '../components/Input/Input';
 import './DNA.css';
+import svg64 from 'svg64'
 import AminoAcid from '../components/AminoAcid/AminoAcid';
 import Codon from '../components/Codon/Codon';
 import Lorf from '../components/Lorf/Lorf';
-import Protein from '../components/Protein/Protein'; 
+import Protein from '../components/Protein/Protein';
+import PlaceHolder from '../components/PlaceHolder/PlaceHolder';
 
 const DNA = (props) => {
 
     const { state, onChange } = props;
     const [aminoAcid, setAminoAcid] = React.useState(state.aminoAcid || [])
     const [codon, setCodon] = React.useState(state.codon || [])
-    const [lorf, setLorf] = React.useState(state.lorf|| [])
-    const [protein, setProtein] = React.useState(state.protein|| [])
-    const [svg, setSVG] = React.useState(state.svg|| [])
+    const [lorf, setLorf] = React.useState(state.lorf || [])
+    const [protein, setProtein] = React.useState(state.protein || [])
+    const [svg, setSVG] = React.useState(state.svg || [])
+    const [active, setActive] = React.useState(false)
 
     React.useEffect(() => {
         onChange({ aminoAcid });
@@ -39,7 +42,7 @@ const DNA = (props) => {
             body: JSON.stringify({
                 sequence: query
             })
-            })
+        })
             .then(response => {
                 return response.json()
             })
@@ -54,7 +57,7 @@ const DNA = (props) => {
             body: JSON.stringify({
                 sequence: query
             })
-            })
+        })
             .then(response => {
                 return response.json()
             })
@@ -69,7 +72,7 @@ const DNA = (props) => {
             body: JSON.stringify({
                 dna: query
             })
-            })
+        })
             .then(response => {
                 return response.json()
             })
@@ -84,7 +87,7 @@ const DNA = (props) => {
             body: JSON.stringify({
                 dna: query
             })
-            })
+        })
             .then(response => {
                 return response.text()
             })
@@ -95,13 +98,21 @@ const DNA = (props) => {
     return <div style={{ flex: 1, display: 'flex' }}>
         <div style={{ flex: 1 }} />
         <Input onSubmit={query => submit(query)} />
-        <div className='output'>
-            <div dangerouslySetInnerHTML={{ __html: svg}} />
+        {protein.length > 0 ? <div className='output'>
+            <div dangerouslySetInnerHTML={{ __html: svg }} />
             {protein.length > 0 ? <Protein protein={protein} /> : null}
-            {lorf.length > 0 ? <Lorf lorf={lorf} /> : null}
+            {/* <h4 style={{
+                color: 'blue',
+                marginTop: '20px'
+            }}>VIEW MORE</h4> */}
+            {/* {lorf.length > 0 ? <Lorf lorf={lorf} /> : null} */}
+            {/* {aminoAcid.length > 0 ? <AminoAcid aminoAcid={aminoAcid} /> : null} */}
+            {/* 
+            
             {codon.length > 0 ? <Codon codon={codon} /> : null} <br/>
-            {aminoAcid.length > 0 ? <AminoAcid aminoAcid={aminoAcid} /> : null}
-        </div>
+            {aminoAcid.length > 0 ? <AminoAcid aminoAcid={aminoAcid} /> : null} */}
+        </div> : <div style={{ flex: 5, display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
+            <PlaceHolder /></div>}
         <div style={{ flex: 1 }} />
     </div>
 }

@@ -3,6 +3,15 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    align-self: flex-end;
+    flex: 5;
+    height: 85vh;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.content .output::-webkit-scrollbar {
+    display: none;
 }
 
 .output .amino-acid {
@@ -12,13 +21,8 @@
     flex-direction: row;
     overflow: auto;
     max-height: 40vh;
-    flex-wrap: wrap;
-    -ms-overflow-style: none;
 }
 
-.amino-acid::-webkit-scrollbar {
-    display: none;
-}
 
 .output .card {
     background-color: #cccccc;
@@ -50,7 +54,7 @@
 .lorf {
     border-radius: 10px;
     border: 1px solid grey;
-    padding: 10px;
+    padding: 5px;
     margin-left: 10px;
     margin-bottom: 5px;
     overflow: auto;
@@ -61,9 +65,9 @@
 .protein {
     border-radius: 10px;
     border: 1px solid grey;
-    padding: 10px;
+    padding: 5px;
     margin-left: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     overflow: auto;
     max-width: 50vw;
 }

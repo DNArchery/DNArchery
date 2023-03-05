@@ -121,14 +121,14 @@ This project wouldn't exist without these resources (libraries/blogs):
 
 ## FAQ
 
-_FOSSHack Questionnaire:_
+**_FOSSHack Questionnaire:_**
 
 Q. What was the initial stage of the project?
 
 > The idea of the project is to create a utility box of various DNA sequencing algorithms exposed via a API schema such that UIs, Apps can be built on top. The integratred GUI is an example of this.
-
+>
 > The initial stage is just a code structure that provides an easy way to embed new algorithms just by adding a new function to one of the `utils.rs` files. (Either in `dna`/`sequence`/`fasta`)
-
+>
 > This is then exposed via a Web API (Rust backend) (See [Code](https://github.com/DNArchery/DNArchery/tree/main/src/api)). This API is utilized for the integrated GUI app.
 
 Q. What stage is it in now?
@@ -138,7 +138,7 @@ Q. What stage is it in now?
 Q. How did you get there?
 
 > Authors of the project are interested in bioinformatics, during the course of development of this project, we researched about the basic needs in a DNA sequencing software and looked into resources to implement it in code. Thanks to the resources (See [Citations & Acknowledgments](#citations--acknowledgements) for Credits), we were able to utilize some libraries for algorithms and we implemented the rest with the documentation.
-
+>
 > We chose Rust as the primary language as that's what we are comfortable with and it provides the necessary performance in running compute intensive algorithms.
 
 Q. What is working/not working?

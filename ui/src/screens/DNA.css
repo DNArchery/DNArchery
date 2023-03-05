@@ -1,0 +1,36 @@
+.content .output {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.output .sequence {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    flex-wrap: wrap;
+    -ms-overflow-style: none;
+}
+
+.sequence::-webkit-scrollbar {
+    display: none;
+}
+
+.output .card {
+    background-color: #cccccc;
+    height: 40px;
+    width: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.output .card p {
+    font-size: 13px;
+}

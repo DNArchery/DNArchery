@@ -1,0 +1,14 @@
+.picker {
+    height: 90%;
+    width: 90%;
+    border-radius: 20px;
+    border: solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.picker > .icon {
+    font-size: 5vw;
+}

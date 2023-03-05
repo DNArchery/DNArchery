@@ -11,3 +11,23 @@ Cargo.lock
 
 # this sample is a chonker
 /samples/chm13v2.0.fa.gz
+
+# dependencies
+/ui/node_modules
+/ui/node_modules/*
+/ui/.pnp
+/ui/.pnp.js
+
+# testing
+ui/coverage
+
+# misc
+ui/.DS_Store
+ui/.env.local
+ui/.env.development.local
+ui/.env.test.local
+ui/.env.production.local
+
+ui/npm-debug.log*
+ui/yarn-debug.log*
+ui/yarn-error.log*

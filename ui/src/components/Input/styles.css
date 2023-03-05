@@ -1,0 +1,49 @@
+.input {
+    flex: 5;
+    border: solid grey;
+    border-width: 0px;
+    border-right-width: 1px;
+    display: flex;
+  }
+
+.input .search {
+    width: 80%;
+    height: 100%;
+    border-radius: 10px;
+    border: solid grey;
+    border-width: 1px;
+    display: flex;
+    align-items: center;
+}
+
+.search > input {
+    height: 90%;
+    width: 90%;
+    border-width: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #e6e6e6;
+    font-family: 'Poppins';
+}
+
+.search > input:focus {
+    outline: none;
+}
+
+/* @media only screen and (max-width: 1500px) {
+    .input .search {
+        height: 8%
+    }
+} */
+  
+/* .input > input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: solid grey;
+    border-width: 1px;
+    background-color: #e6e6e6;
+    border-radius: 10px;
+    font-family: 'Poppins';
+  } */

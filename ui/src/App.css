@@ -1,0 +1,68 @@
+@font-face {
+  font-family: 'Poppins';
+  src: local('Poppins-Regular'), url("./fonts/Poppins-Regular.ttf") format("truetype");
+}
+
+.App {
+  min-height: 100vh;
+  background-color: #e6e6e6;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins';
+}
+
+h2, p {
+  margin-block: 0em;
+  font-weight: 700;
+}
+
+.window {
+  flex: 1;
+  min-height: 40px;
+  max-height: 40px;
+  display: flex;
+}
+
+.window > .buttons {
+  display: flex;
+}
+
+.window .button {
+  height: 100%;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.window .button:hover {
+  background-color: #b3b3b3;
+}
+
+.window .close:hover {
+  background-color: red;
+}
+
+.content {
+  flex: 20;
+  display: flex;
+  flex-direction: column;
+}
+
+.content .output {
+  flex: 5;
+}
+
+.content .tab-button {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  width: 15vw;
+  height: 5vh;
+}
+
+.content .tab-button p {
+  padding: 10px;
+  font-size: 15px;
+  margin-left: 5px;
+}

@@ -97,6 +97,15 @@ You can see the OpenAPI Schema (Swagger UI) at http://127.0.0.1:1337/swagger-ui/
 
 _The integrated GUI is a proof-of-concept into how the underlying API schema can be utilized._
 
+
+<table>
+  <tr>
+<td><img src="https://raw.githubusercontent.com/DNArchery/DNArchery/main/assets/screenshot-1.png"></td>
+  <td><img src="https://raw.githubusercontent.com/DNArchery/DNArchery/main/assets/screenshot-2.png"></td>
+  <td><img src="https://raw.githubusercontent.com/DNArchery/DNArchery/main/assets/screenshot-3.png"></td>
+   </tr>
+</table>
+
 ## Contribution
 
 As stated in the goals section, one of our primary goal is to provide a low barrier contributing opportunity to the bioinformatics open-source space. If you want to add more DNA sequencing/alignment/conversion algorithms, you can browse to `src -> core ->` and chose which part you want to extend. Every super module in the tree have the same structure, a `utils.rs` file which contain all functions, you can add a new function and implement it as an exposed actix-web endpoint in the `src -> api -> endpoints.rs` and that's it.

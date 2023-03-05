@@ -26,6 +26,7 @@ Built with ❤️ at [**FOSSHack 3.0**](https://fossunited.org/fosshack/2023)!
 - [Citations & Acknowledgments](#citations--acknowledgements)
 - [Contribution](#contribution)
 - [License](#license)
+- [Project Progress](#faq)
 
 ## Goals
 
@@ -38,7 +39,7 @@ Built with ❤️ at [**FOSSHack 3.0**](https://fossunited.org/fosshack/2023)!
 
 ## Features
 
-- The core of the utility is exposed as a Webservice API along with an OpenAPI schema such that UIs or Apps can be built on top, just the like main UI toolkit DNArchery comes with. (See [GUI](#gui))
+- The core of the utility is exposed as a Webservice API (Rust backend) along with an OpenAPI schema such that UIs or Apps can be built on top, just the like main UI toolkit DNArchery comes with. (See [GUI](#gui))
 - **Toolsets:**
   - **Conversions** - From DNA to Amino Acids, Proteins, Codon frames, etc.
   - **Sequencing Algorithms** - [K-mer](https://en.wikipedia.org/wiki/K-mer), Ndiffs, and more.
@@ -117,5 +118,31 @@ This project wouldn't exist without these resources (libraries/blogs):
 - [rust-genomics](https://github.com/joyliu-q/rust-genomics)
 - [rust-debruijn](https://github.com/10XGenomics/rust-debruijn)
 - [resvg](https://github.com/RazrFalcon/resvg)
+
+## FAQ
+
+_FOSSHack Questionnaire:_
+
+Q. What was the initial stage of the project?
+
+> The idea of the project is to create a utility box of various DNA sequencing algorithms exposed via a API schema such that UIs, Apps can be built on top. The integratred GUI is an example of this.
+
+> The initial stage is just a code structure that provides an easy way to embed new algorithms just by adding a new function to one of the `utils.rs` files. (Either in `dna`/`sequence`/`fasta`)
+
+> This is then exposed via a Web API (Rust backend) (See [Code](https://github.com/DNArchery/DNArchery/tree/main/src/api)). This API is utilized for the integrated GUI app.
+
+Q. What stage is it in now?
+
+> The Rust backend/codebase implementation is complete. The GUI on top is in a proof-of-concept stage.
+
+Q. How did you get there?
+
+> Authors of the project are interested in bioinformatics, during the course of development of this project, we researched about the basic needs in a DNA sequencing software and looked into resources to implement it in code. Thanks to the resources (See [Citations & Acknowledgments](#citations--acknowledgements) for Credits), we were able to utilize some libraries for algorithms and we implemented the rest with the documentation.
+
+> We chose Rust as the primary language as that's what we are comfortable with and it provides the necessary performance in running compute intensive algorithms.
+
+Q. What is working/not working?
+
+> The backend is in a stable structure and works according to the specified schema. The GUI is just a wrapper around it that does I/O from the same API.
 
 ---

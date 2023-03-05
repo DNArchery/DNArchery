@@ -1,5 +1,9 @@
-use serde::{Serialize, Deserialize};
-use actix_web::{post, web::{Json, Either}, Responder};
+use actix_web::{
+    post,
+    web::{Either, Json},
+    Responder,
+};
+use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 
 use crate::core::sequence;
@@ -54,7 +58,6 @@ async fn nucleotide_at_index(form: Json<NucleotideIndex>) -> impl Responder {
     sequence::utils::nucleotide_index(form.sequence.to_owned(), form.index)
 }
 
-
 #[utoipa::path(
     tag="DNA Sequencing",
     responses(
@@ -85,18 +88,12 @@ async fn seq_lorf(form: Json<Sequence>) -> Either<Json<SingleLorf>, Json<MultiLo
     match lorf {
         Either::Left(lorf) => {
             let length = lorf.len();
-            Either::Left(Json(SingleLorf {
-                lorf,
-                length
-            }))
-        },
+            Either::Left(Json(SingleLorf { lorf, length }))
+        }
         Either::Right(lorfs) => {
             let length = lorfs.len();
-            Either::Right(Json(MultiLorf {
-                lorfs,
-                length
-            }))
-        },
+            Either::Right(Json(MultiLorf { lorfs, length }))
+        }
     }
 }
 

@@ -20,3 +20,5 @@ rust-genomics = { path = "lib/rust-genomics" }
 plasmid = { path = "lib/libplasmid" }
 debruijn = "0.3.4"
 seal = "0.1.5"
+oasgen = { version = "0.7.0", features = ["actix"] }
+actix-cors = "0.6.4"

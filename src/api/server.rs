@@ -1,5 +1,7 @@
 use actix_web::{get, App, HttpServer, Responder};
-use portpicker::pick_unused_port;
+use actix_cors::Cors;
+
+const PORT: u16 = 1337;
 
 /// All endpoints
 use super::endpoints::{
@@ -35,12 +37,13 @@ async fn index() -> impl Responder {
 
 #[actix_web::main]
 pub async fn spin() -> std::io::Result<()> {
-    let port = pick_unused_port().expect("Failed to find an unused port");
-
-    info!("DNArchery API server listening on port {}", port);
+    info!("DNArchery API server listening on port {}", PORT);
 
     HttpServer::new(||
         App::new()
+            .wrap(
+                Cors::permissive()
+            )
             .service(index)
             .service(lorf_from_fasta)
             .service(nucleotide_at_index)
@@ -60,7 +63,7 @@ pub async fn spin() -> std::io::Result<()> {
             .service(align_needleman_wunsch)
             .service(align_smith_waterman)
         )
-        .bind(("127.0.0.1", 1337))?
+        .bind(("127.0.0.1", PORT))?
         .run()
         .await
 }

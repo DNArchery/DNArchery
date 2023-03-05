@@ -17,6 +17,44 @@ const fasta_lorf = (fasta_file_path) => {
     return response;
 }
 
+const dna_random_sequence = (length) => {
+    var response = fetch('http://127.0.0.1:1337/sequence/random', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            length: length
+        })
+    })
+        .then(response => {
+            return response.json()
+        })
+        .then(data => setSequence(data.amino_acids))
+        .catch(error => console.error(error));
+
+    return response;
+}
+
+const dna_to_amino_acids = (dna_string) => {
+    var response = fetch('http://127.0.0.1:1337/sequence/random', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            dna: dna_string
+        })
+    })
+        .then(response => {
+            return response.json()
+        })
+        .then(data => setSequence(data.amino_acids))
+        .catch(error => console.error(error));
+
+    return response;
+}
+
 const nucleotide_at_index = (sequence, index) => {
     var response = fetch('http://127.0.0.1:1337/sequence/nucleotide_at_index', {
         method: 'POST',
@@ -82,7 +120,7 @@ const dna_to_protein = (dna_string) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            dna_string: dna_string
+            dna: dna_string
         })
     })
         .then(response => {
@@ -102,7 +140,7 @@ const dna_to_svg = (dna_string) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            dna_string: dna_string
+            dna: dna_string
         })
     })
         .then(response => {

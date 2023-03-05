@@ -82,11 +82,11 @@ The first command clones this repository into your local machine and the last tw
 
 ## Web API
 
-You can see the OpenAPI Schema on the Swagger UI at http://127.0.0.1:1337/swagger/ui
+You can see the OpenAPI Schema (Swagger UI) at http://127.0.0.1:1337/swagger/ui/.
 
 <table>
   <tr>
-    <td><img src="https://user-images.githubusercontent.com/PLACEHOLDER"></td>
+    <td><img src="https://raw.githubusercontent.com/DNArchery/DNArchery/main/assets/swagger-ui-screenshot.png"></td>
    </tr>
 </table>
 

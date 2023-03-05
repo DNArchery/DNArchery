@@ -8,6 +8,8 @@ A toolkit for instantly performing sequencing, alignment, distance algorithms on
 
 The core goal of the project is to be a good general-purpose toolkit for DNA sequencing/alignment/distance analysis and to bring more open-source attention to bioinformatics by promoting more research software in the industry to be open-source. (Read [Goals](#goals))
 
+_The integrated GUI is a proof-of-concept into how the underlying API schema can be utilized._
+
 Built with ❤️ at [**FOSSHack 3.0**](https://fossunited.org/fosshack/2023)!
 
 <p align="left">
@@ -89,6 +91,10 @@ You can see the OpenAPI Schema (Swagger UI) at http://127.0.0.1:1337/swagger-ui/
     <td><img src="https://raw.githubusercontent.com/DNArchery/DNArchery/main/assets/swagger-ui-screenshot.png"></td>
    </tr>
 </table>
+
+## GUI
+
+_The integrated GUI is a proof-of-concept into how the underlying API schema can be utilized._
 
 ## Contribution
 

@@ -23,7 +23,6 @@ Built with ❤️ at [**FOSSHack 3.0**](https://fossunited.org/fosshack/2023)!
 - [Build From Source](#build-from-source)
 - [Web API (OpenAPI Schema)](#web-api)
 - [GUI](#gui)
-- [Screenshots](#screenshots)
 - [Citations & Acknowledgments](#citations--acknowledgements)
 - [Contribution](#contribution)
 - [License](#license)

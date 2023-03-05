@@ -10,14 +10,17 @@ import './App.css';
 
 const screens = [
   {
+    id: '1',
     name: 'DNA',
     component: <DNA />
   },
   {
+    id: '2',
     name: 'Algorithms',
     component: <Algorithms />
   },
   {
+    id: '3',
     name: 'Sequence',
     component: <Sequence />
   },
@@ -25,30 +28,31 @@ const screens = [
 
 function App() {
 
-  const [screen, setScreen] = React.useState(screens[0]);
+  const [screenIndex, setScreenIndex] = React.useState(0);
 
-  const Button = ({ icon, isClose }) => {
-    return <div className={isClose ? 'button close' : 'button'}>
-      {icon}
-    </div>
-  }
+  const [screenStates, setScreenStates] = React.useState(
+    screens.reduce((acc, screen) => ({ ...acc, [screen.id]: {} }), {})
+  );
 
-  const Header = () => {
-    return <div className='window'>
-      <div style={{ flex: 8 }} />
-      <div className='buttons' >
-        <Button icon={<VscChromeMinimize />} />
-        <Button icon={<VscChromeMaximize />} />
-        <Button isClose icon={<IoMdClose />} />
-      </div>
-    </div>
-  }
+  const handleTabClick = React.useCallback(
+    (index) => {
+      setScreenIndex(index);
+    },
+    []
+  );
+
+  const handleScreenChange = React.useCallback(
+    (id, state) => {
+      setScreenStates((prevState) => ({ ...prevState, [id]: state }));
+    },
+    []
+  );
 
   const Tab = ({ component, index, onPress }) => {
     return <div onClick={onPress} className='tab-button'
       style={{
-        backgroundColor: component.name === screen.name ? 'blue' : 'transparent',
-        color: component.name === screen.name ? 'white' : 'black',
+        backgroundColor: index === screenIndex ? 'blue' : 'transparent',
+        color: index === screenIndex ? 'white' : 'black',
         borderBottomLeftRadius: index === 0 ? '10px' : '0px',
         borderTopLeftRadius: index === 0 ? '10px' : '0px',
         borderBottomRightRadius: index === 2 ? '10px' : '0px',
@@ -61,7 +65,7 @@ function App() {
   return (
     <IconContext.Provider value={{ color: "black", className: "icon" }}>
       <div className="App">
-        <Header />
+        <div style={{ flex: 1 }} />
         <div className='content'>
           <div style={{ flex: 2, display: 'flex' }}>
             <div style={{ flex: 1 }} />
@@ -69,13 +73,20 @@ function App() {
               <h2>DNArchery</h2>
               <div style={{ height: '5vh', width: '80%', display: 'flex', flexDirection: 'row' }} >
                 {screens.map((item, index) => {
-                  return <Tab key={index} index={index} component={item} onPress={() => setScreen(item)} />
+                  return <Tab key={index} index={index} component={item} onPress={() => handleTabClick(index)} />
                 })}
               </div>
             </div>
             <div style={{ flex: 1 }} />
           </div>
-          {screen.component}
+          {screens.map((screen, index) => (
+            <div key={index} style={{ flex: 7, display: screenIndex === index ? "flex" : "none" }}>
+              {React.cloneElement(screen.component, {
+                state: screenStates[screen.id],
+                onChange: (state) => handleScreenChange(screen.id, state),
+              })}
+            </div>
+          ))}
           <div style={{ flex: 0.5 }}></div>
         </div>
       </div>

@@ -16,6 +16,17 @@
     align-items: center;
 }
 
+.input .button {
+    background-color: blue;
+    height: 90%;
+    width: 3vw;
+    margin-left: 1vw;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .search > input {
     height: 90%;
     width: 90%;

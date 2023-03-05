@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: row;
     overflow: auto;
+    max-height: 40vh;
     flex-wrap: wrap;
     -ms-overflow-style: none;
 }

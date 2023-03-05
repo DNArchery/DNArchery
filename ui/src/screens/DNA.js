@@ -3,9 +3,14 @@ import Input from '../components/Input/Input';
 import PlaceHolder from '../components/PlaceHolder/PlaceHolder';
 import './DNA.css';
 
-const DNA = () => {
+const DNA = (props) => {
 
-    const [sequence, setSequence] = React.useState([])
+    const { state, onChange } = props;
+    const [sequence, setSequence] = React.useState(state.sequence || [])
+
+    React.useEffect(() => {
+        onChange({ sequence });
+      }, [sequence]);
 
     const SequenceCard = ({ label }) => {
         return <div className='card'>
@@ -27,19 +32,19 @@ const DNA = () => {
 
     }
 
-    return <div style={{ flex: 7, display: 'flex' }}>
+    return <div style={{ flex: 1, display: 'flex' }}>
         <div style={{ flex: 1 }} />
         <Input onSubmit={query => submit(query)} />
         <div className='output'>
             {sequence.length <= 0 ? <PlaceHolder />
-                : <>
-                    <div style={{ flex: 5 }} />
+                : <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                    <div style={{ flex: 3 }} />
                     <div className='sequence'>
                         {sequence.map((item, index) => {
-                            return <SequenceCard key={index} item={item} />
+                            return <SequenceCard key={index} label={item} />
                         })}
                     </div>
-                </>}
+                </div>}
         </div>
         <div style={{ flex: 1 }} />
     </div>

@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/DNArchery/DNArchery/main/assets/dnarchery-logo.png" alt="binserve logo" width="250" align="right">
+<img src="https://raw.githubusercontent.com/DNArchery/DNArchery/main/assets/dnarchery-logo.png" alt="dnarchery logo" width="250" align="right">
 
 # `DNArchery` 🧬
 
@@ -12,7 +12,7 @@ Built with ❤️ at [**FOSSHack 3.0**](https://fossunited.org/fosshack/2023)!
 
 <p align="left">
     <img src="https://img.shields.io/badge/version-0.1.0-blue.svg" title="version" alt="version">
-    <a href="https://github.com/dnarchery/dnarchery/blob/master/LICENSE"><img alt="gitHub license" src="https://img.shields.io/github/license/dnarchery/dnarchery.svg"></a>
+    <a href="https://github.com/dnarchery/dnarchery/blob/master/LICENSE"><img alt="github license" src="https://img.shields.io/github/license/dnarchery/dnarchery.svg"></a>
 </p>
 
 ## Table of Contents

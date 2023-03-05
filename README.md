@@ -1,4 +1,6 @@
-# `DNArchery`
+<img src="https://raw.githubusercontent.com/DNArchery/DNArchery/main/assets/dnarchery-logo.png" alt="binserve logo" width="250" align="right">
+
+# `DNArchery` 🧬
 
 > A free and open-source cross-platform DNA Sequencing/Visualization Software for bioinformatics research.
 

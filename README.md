@@ -82,7 +82,7 @@ The first command clones this repository into your local machine and the last tw
 
 ## Web API
 
-You can see the OpenAPI Schema (Swagger UI) at http://127.0.0.1:1337/swagger/ui/.
+You can see the OpenAPI Schema (Swagger UI) at http://127.0.0.1:1337/swagger-ui/.
 
 <table>
   <tr>

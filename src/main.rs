@@ -3,14 +3,16 @@ extern crate pretty_env_logger;
 
 mod api;
 mod core;
-
-use api::server;
+mod plug;
 
 fn main() {
     std::env::set_var("RUST_LOG", "info");
     pretty_env_logger::init();
 
-    // The interface for DNArchery is a web server with endpoints utilized by the UI
-    server::spin()
-        .expect("Failed to spin up API server");
+    std::thread::spawn(|| {
+        api::server::spin()
+    });
+
+    // Spin up integrated GUI
+    crate::plug::gui::spin_gui_window();
 }

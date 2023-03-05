@@ -1,5 +1,6 @@
 [package]
 name = "dnarchery"
+description = "A free and open-source DNA Sequencing/Visualization software for bioinformatics research."
 version = "0.1.0"
 edition = "2021"
 
@@ -22,6 +23,10 @@ debruijn = "0.3.4"
 seal = "0.1.5"
 oasgen = { version = "0.7.0", features = ["actix"] }
 actix-cors = "0.6.4"
+actix-files = "0.6.2"
+wry = "0.27.0"
+futures = "0.3.26"
+tokio = { version = "1.26.0", features = ["full"] }
 
 [package.metadata.bundle]
 name = "DNArchery"
@@ -30,7 +35,6 @@ icon = ["assets/dnarchery-logo.png"]
 version = "0.1.0"
 resources = ["ui/build", "assets/*"]
 copyright = "MIT License"
-category = "Bioinformatics Utility"
 short_description = "A free and open-source DNA Sequencing/Visualization software for bioinformatics research."
 long_description = """
 A free and open-source DNA Sequencing/Visualization software for bioinformatics research.

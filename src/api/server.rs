@@ -1,5 +1,6 @@
 use actix_web::{get, App, HttpServer, Responder};
 use actix_cors::Cors;
+use actix_files as fs;
 
 const PORT: u16 = 1337;
 
@@ -36,8 +37,9 @@ async fn index() -> impl Responder {
 }
 
 #[actix_web::main]
-pub async fn spin() -> std::io::Result<()> {
+pub async fn spin() -> Result<(), std::io::Error> {
     info!("DNArchery API server listening on port {}", PORT);
+    info!("Browse to http://127.0.0.1:1337/ui for the UI");
 
     HttpServer::new(||
         App::new()
@@ -62,8 +64,17 @@ pub async fn spin() -> std::io::Result<()> {
             .service(calculate_sparse_alignments)
             .service(align_needleman_wunsch)
             .service(align_smith_waterman)
+            .service(
+                fs::Files::new("/ui", "ui/build")
+                    .index_file("index.html")
+                    .use_last_modified(true),
+            )
+            .service(
+                fs::Files::new("/static", "ui/build/static")
+                    .use_last_modified(true),
+            )            
         )
-        .bind(("127.0.0.1", PORT))?
+        .bind(("127.0.0.1", PORT)).unwrap()
         .run()
         .await
 }

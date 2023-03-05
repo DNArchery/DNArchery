@@ -70,6 +70,10 @@ $ dnarchery
 ```sh
 $ git clone https://github.com/DNArchery/DNArchery.git
 $ cd DNArchery/
+$ # < GUI dependencies >
+$ sudo apt-get install -y gir1.2-javascriptcoregtk-4.0
+$ sudo apt-get install -y libwebkit2gtk-4.1-dev
+$ # </ GUI dependencies >
 $ cargo build --release
 $ ./target/release/dnarchery
 ```

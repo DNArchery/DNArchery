@@ -1,32 +1,35 @@
 use serde::Serialize;
+use utoipa::ToSchema;
 
 extern crate seal;
 
 use seal::pair::{
-    AlignmentSet, InMemoryAlignmentMatrix, NeedlemanWunsch, Step, SmithWaterman, Strategy
+    AlignmentSet, InMemoryAlignmentMatrix, NeedlemanWunsch, SmithWaterman, Step, Strategy,
 };
 
 use std::fmt::Debug;
 
-#[derive(Serialize)]
+#[derive(Serialize, ToSchema)]
 pub struct DNAAlignment {
+    #[schema(example = 1)]
     score: i32,
+    #[schema(example = "Remember to buy groceries")]
     alignment_a: String,
+    #[schema(example = "Remember to buy groceries")]
     alignment_b: String,
 }
 
-fn align_dna<S:Strategy>(dna_a: String, dna_b: String, strategy: S) -> DNAAlignment
-where S:Debug,
+fn align_dna<S: Strategy>(dna_a: String, dna_b: String, strategy: S) -> DNAAlignment
+where
+    S: Debug,
 {
     let sequence_x: Vec<char> = dna_a.chars().collect();
     let sequence_y: Vec<char> = dna_b.chars().collect();
 
-    let alignment_set: Result<AlignmentSet<InMemoryAlignmentMatrix>, _> = AlignmentSet::new(
-        sequence_x.len(),
-        sequence_y.len(),
-        strategy,
-        |x, y| sequence_x[x] == sequence_y[y],
-    );
+    let alignment_set: Result<AlignmentSet<InMemoryAlignmentMatrix>, _> =
+        AlignmentSet::new(sequence_x.len(), sequence_y.len(), strategy, |x, y| {
+            sequence_x[x] == sequence_y[y]
+        });
 
     let mut alignment1 = String::new();
     let mut alignment2 = String::new();

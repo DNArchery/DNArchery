@@ -80,6 +80,16 @@ $ ./target/release/dnarchery
 
 The first command clones this repository into your local machine and the last two commands enters the directory and builds the source in release mode.
 
+## Web API
+
+You can see the OpenAPI Schema on the Swagger UI at http://127.0.0.1:1337/swagger/ui
+
+<table>
+  <tr>
+    <td><img src="https://user-images.githubusercontent.com/PLACEHOLDER"></td>
+   </tr>
+</table>
+
 ## Contribution
 
 As stated in the goals section, one of our primary goal is to provide a low barrier contributing opportunity to the bioinformatics open-source space. If you want to add more DNA sequencing/alignment/conversion algorithms, you can browse to `src -> core ->` and chose which part you want to extend. Every super module in the tree have the same structure, a `utils.rs` file which contain all functions, you can add a new function and implement it as an exposed actix-web endpoint in the `src -> api -> endpoints.rs` and that's it.

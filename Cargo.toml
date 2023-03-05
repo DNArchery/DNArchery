@@ -22,3 +22,19 @@ debruijn = "0.3.4"
 seal = "0.1.5"
 oasgen = { version = "0.7.0", features = ["actix"] }
 actix-cors = "0.6.4"
+
+[package.metadata.bundle]
+name = "DNArchery"
+identifier = "opensource.bioinformatics.dnarchery"
+icon = ["assets/dnarchery-logo.png"]
+version = "0.1.0"
+resources = ["ui/build", "assets/*"]
+copyright = "MIT License"
+category = "Bioinformatics Utility"
+short_description = "A free and open-source DNA Sequencing/Visualization software for bioinformatics research."
+long_description = """
+A free and open-source DNA Sequencing/Visualization software for bioinformatics research.
+"""
+deb_depends = []
+osx_frameworks = []
+osx_url_schemes = ["opensource.bioinformatics.dnarchery"]

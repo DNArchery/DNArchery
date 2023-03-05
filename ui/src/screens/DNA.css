@@ -5,7 +5,7 @@
     flex-direction: column;
 }
 
-.output .sequence {
+.output .amino-acid {
     flex: 1;
     width: 100%;
     display: flex;
@@ -16,7 +16,7 @@
     -ms-overflow-style: none;
 }
 
-.sequence::-webkit-scrollbar {
+.amino-acid::-webkit-scrollbar {
     display: none;
 }
 

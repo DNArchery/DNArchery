@@ -1,16 +1,16 @@
 import * as React from 'react'
 import Input from '../components/Input/Input';
-import PlaceHolder from '../components/PlaceHolder/PlaceHolder';
 import './DNA.css';
+import AminoAcid from '../components/AminoAcid/AminoAcid';
 
 const DNA = (props) => {
 
     const { state, onChange } = props;
-    const [sequence, setSequence] = React.useState(state.sequence || [])
+    const [aminoAcid, setAminoAcid] = React.useState(state.aminoAcid|| [])
 
     React.useEffect(() => {
-        onChange({ sequence });
-      }, [sequence]);
+        onChange({ aminoAcid });
+      }, [aminoAcid]);
 
     const SequenceCard = ({ label }) => {
         return <div className='card'>
@@ -27,7 +27,7 @@ const DNA = (props) => {
             body: JSON.stringify({ dna: query })
         })
             .then(response => response.json())
-            .then(data => setSequence(data.amino_acids))
+            .then(data => setAminoAcid(data.amino_acids))
             .catch(error => console.error(error));
 
     }
@@ -36,15 +36,7 @@ const DNA = (props) => {
         <div style={{ flex: 1 }} />
         <Input onSubmit={query => submit(query)} />
         <div className='output'>
-            {sequence.length <= 0 ? <PlaceHolder />
-                : <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ flex: 3 }} />
-                    <div className='sequence'>
-                        {sequence.map((item, index) => {
-                            return <SequenceCard key={index} label={item} />
-                        })}
-                    </div>
-                </div>}
+            {aminoAcid.length > 0 ? <AminoAcid aminoAcid={aminoAcid}/> : null}
         </div>
         <div style={{ flex: 1 }} />
     </div>

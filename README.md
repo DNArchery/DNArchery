@@ -133,7 +133,7 @@ Q. What was the initial stage of the project?
 
 Q. What stage is it in now?
 
-> The Rust backend/codebase implementation is complete. The GUI on top is in a proof-of-concept stage.
+> The Rust backend is complete. The GUI on top is a proof-of-concept stage.
 
 Q. How did you get there?
 
@@ -143,6 +143,6 @@ Q. How did you get there?
 
 Q. What is working/not working?
 
-> The backend is in a stable structure and works according to the specified schema. The GUI is just a wrapper around it that does I/O from the same API.
+> The backend is stable and works according to the specified schema. The GUI is just a wrapper around it that does I/O from the same API.
 
 ---

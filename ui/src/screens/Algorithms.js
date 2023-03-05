@@ -72,8 +72,8 @@ const Algorithms = (props) => {
         <MultipleInput onSubmit={result => submit({ a: result.a, b: result.b })} />
         <div className='output'>
             {active ? <div style={{ flex: 8, display: 'flex', width: '90%', flexDirection: 'column', justifyContent: 'center' }}>
-                <Result label={'Needleman Wusch'} score={needleman.score} a={needleman.alignment_a} b={needleman.alignment_b} />
-                <Result label={'Smith Waterman'} score={smith.score} a={smith.alignment_a} b={smith.alignment_b} />
+                <Result label={'Needleman-Wunsch'} score={needleman.score} a={needleman.alignment_a} b={needleman.alignment_b} />
+                <Result label={'Smith-Waterman'} score={smith.score} a={smith.alignment_a} b={smith.alignment_b} />
                 <Result label={'Sparse Alignment'} score={sparse.score} match={JSON.stringify(sparse.match_path)} />
             </div>
                 : <PlaceHolder />}

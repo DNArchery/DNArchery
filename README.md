@@ -49,7 +49,10 @@ Built with ❤️ at [**FOSSHack 3.0**](https://fossunited.org/fosshack/2023)!
 
 ## Installation
 
-Download the executable from [**Releases**](https://github.com/DNArchery/DNArchery/releases) OR Install with `cargo`:
+Install the executable with the following command:
+
+> **Note**
+> You would need the assets for the GUI integration to work, follow the [Build From Source](#build-from-source) instructions to set up.
 
 ```sh
 $ cargo install --git https://github.com/DNArchery/DNArchery.git

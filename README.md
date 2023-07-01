@@ -10,6 +10,8 @@ The core goal of the project is to be a good general-purpose toolkit for DNA seq
 
 Built with ❤️ at [**FOSSHack 3.0**](https://fossunited.org/fosshack/2023)!
 
+> **UPDATE:** This project [won](https://forum.fossunited.org/t/foss-hack-3-0-results/1882) **FOSSHack 3.0**!
+
 <p align="left">
     <img src="https://img.shields.io/badge/version-0.1.0-blue.svg" title="version" alt="version">
     <a href="https://github.com/dnarchery/dnarchery/blob/master/LICENSE"><img alt="github license" src="https://img.shields.io/github/license/dnarchery/dnarchery.svg"></a>
